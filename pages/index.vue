@@ -11,4 +11,3 @@
         </client-only>
     </div>
 </template>
-  

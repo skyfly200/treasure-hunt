@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: [
     'vuetify-nuxt-module'
   ],
+  css: ["leaflet/dist/leaflet.css"],
   vuetify: {
     moduleOptions: {
       /* module specific options */

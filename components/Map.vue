@@ -15,6 +15,9 @@ onMounted(() => {
   // Add OpenStreetMap Tile Layer
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors",
+    tileSize: 256, // Ensures proper tile size
+    maxZoom: 19,
+    timeout: 5000, // Retry loading after 5 seconds
   }).addTo(map);
 
   // Custom Marker Data
@@ -44,10 +47,6 @@ onMounted(() => {
 <template>
   <div ref="mapContainer" class="map"></div>
 </template>
-
-<script setup>
-    import "leaflet/dist/leaflet.css";
-</script>
 
 <style scoped lang="sass">
 .map
