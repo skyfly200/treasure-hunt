@@ -6,7 +6,9 @@
             <v-btn to="/about">About</v-btn>
             <v-btn to="/found">Found</v-btn>
         </v-toolbar>
-        <Map></Map>
+        <client-only>
+            <Map />
+        </client-only>
     </div>
 </template>
   

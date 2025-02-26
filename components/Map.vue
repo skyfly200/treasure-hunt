@@ -1,32 +1,43 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import L from 'leaflet';
+import { onMounted, ref } from "vue";
+
+// Dynamically import Leaflet on client-side only
+const L = process.client ? await import("leaflet") : null;
 
 const mapContainer = ref(null);
 
 onMounted(() => {
-  if (process.client) {
-    // Initialize the map
-    const map = L.map(mapContainer.value).setView([37.7749, -122.4194], 10); // Centered at San Francisco
+  if (!process.client || !mapContainer.value || !L) return;
 
-    // Add OpenStreetMap Tile Layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors',
-    }).addTo(map);
+  // Initialize the map
+  const map = L.map(mapContainer.value).setView([37.7749, -122.4194], 10); // Centered at San Francisco
 
-    // Custom Marker Data
-    const locations = [
-      { lat: 37.7749, lng: -122.4194, title: 'San Francisco' },
-      { lat: 34.0522, lng: -118.2437, title: 'Los Angeles' },
-      { lat: 40.7128, lng: -74.006, title: 'New York City' },
-    ];
+  // Add OpenStreetMap Tile Layer
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap contributors",
+  }).addTo(map);
 
-    // Add Markers
-    locations.forEach((loc) => {
-      const marker = L.marker([loc.lat, loc.lng]).addTo(map);
-      marker.bindPopup(`<b>${loc.title}</b>`).openPopup();
-    });
-  }
+  // Custom Marker Data
+  const locations = [
+    { lat: 37.7749, lng: -122.4194, title: "San Francisco" },
+    { lat: 34.0522, lng: -118.2437, title: "Los Angeles" },
+    { lat: 40.7128, lng: -74.006, title: "New York City" },
+  ];
+
+  // Add Markers
+  locations.forEach((loc) => {
+    // TODO - add custom marker icons
+    // const customIcon = L.icon({
+    //     iconUrl: '/custom-marker.png',
+    //     iconSize: [30, 30], // Size of the icon
+    // });
+    // const marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).addTo(map);
+
+    const marker = L.marker([loc.lat, loc.lng]).addTo(map);
+    // TODO - add custom popup content
+    // marker.bindPopup(`<b>${loc.title}</b><br><img src="/custom-image.png" alt="Custom Image" />`).openPopup();
+    marker.bindPopup(`<b>${loc.title}</b>`).openPopup();
+  });
 });
 </script>
 
@@ -34,9 +45,12 @@ onMounted(() => {
   <div ref="mapContainer" class="map"></div>
 </template>
 
-<style scoped>
-    .map {
-    width: 100vw;
-    height: 100vh;
-    }
+<script setup>
+    import "leaflet/dist/leaflet.css";
+</script>
+
+<style scoped lang="sass">
+.map
+  width: 100vw
+  height: 100vh
 </style>
