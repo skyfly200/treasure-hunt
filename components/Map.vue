@@ -38,7 +38,7 @@ onMounted(() => {
     const marker = L.marker([loc.lat, loc.lng]).addTo(map);
     // TODO - add custom popup content and open on click handler
     // marker.bindPopup(`<b>${loc.title}</b><br><img src="/custom-image.png" alt="Custom Image" />`).openPopup();
-    marker.bindPopup(`<b>${loc.title}</b>`).openPopup();
+    marker.bindPopup(`<b>${loc.title}</b>`)//.openPopup();
   });
 });
 </script>
