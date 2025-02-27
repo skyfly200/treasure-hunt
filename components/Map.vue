@@ -12,12 +12,38 @@ onMounted(() => {
   // Initialize the map
   const map = L.map(mapContainer.value).setView([37.7749, -122.4194], 5); // Centered at San Francisco
 
-  // Add OpenStreetMap Tile Layer
-  L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg', {
-    maxZoom: 16,
-    attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>', 
-    timeout: 5000, // Retry loading after 5 seconds
-  }).addTo(map);
+  // --- Define Base Layers ---
+  const baseLayers = {
+    "Watercolor": L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg', {
+        maxZoom: 16,
+        attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>', 
+        timeout: 5000, // Retry loading after 5 seconds
+    }),
+
+    "OpenStreetMap": L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+      timeout: 5000, // Retry loading after 5 seconds
+      maxZoom: 19,
+    }),
+
+    "Topographic": L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenTopoMap contributors",
+      timeout: 5000, // Retry loading after 5 seconds
+      maxZoom: 17,
+    }),
+
+    "Satellite (Esri)": L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+      attribution: "&copy; Esri contributors",
+      timeout: 5000, // Retry loading after 5 seconds
+      maxZoom: 19,
+    }),
+  };
+
+  // --- Add Default Layer ---
+  baseLayers["Watercolor"].addTo(map);
+
+  // --- Add Layer Control ---
+  L.control.layers(baseLayers).addTo(map);
 
   // Custom Marker Data
   const locations = [
