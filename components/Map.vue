@@ -71,10 +71,12 @@ onMounted(async () => {
     L.control.layers(baseLayers).addTo(map);
 
     // Fetch marker data from Nuxt backend API
-    const { markers } = await useFetch("/api/markers");
+    const markers = await $fetch("/api/markers");
+
+    console.log(markers);
 
     if (markers !== undefined) {
-        markers.value.forEach((marker) => {
+        markers.forEach((marker) => {
             // TODO - add custom marker icons
             // const customIcon = L.icon({ iconUrl: '/custom-marker.png', iconSize: [30, 30], });
             // const marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).addTo(map);
