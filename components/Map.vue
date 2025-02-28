@@ -7,6 +7,9 @@ const L = process.client ? await import("leaflet") : null;
 
 const mapContainer = ref(null);
 
+// Fetch marker data from Nuxt backend API
+const markersResponse = await useFetch("/api/markers");
+
 // --- Define Base Layers ---
 const baseLayers = {
     "Watercolor": L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg', {
@@ -70,8 +73,7 @@ onMounted(async () => {
     // --- Add Layer Control ---
     L.control.layers(baseLayers).addTo(map);
 
-    // Fetch marker data from Nuxt backend API
-    const markers = await $fetch("/api/markers");
+    const markers = (await markersResponse).data.value;
 
     console.log(markers);
 
