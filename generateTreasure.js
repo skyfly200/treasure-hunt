@@ -1,6 +1,5 @@
 import { randomBytes } from "crypto";
 import QRCode from "qrcode";
-import fs from "fs";
 
 // Generate a short random alphanumeric code (8 characters)
 const shortCode = randomBytes(6).toString("base64url").slice(0, 8); // 8-char safe URL string
