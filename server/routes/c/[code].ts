@@ -21,8 +21,14 @@ function findTreasureByCode(code: String) {
 }
 
 export default defineEventHandler(async (event) => {
-  const { code, userId } = await readBody(event);
+  const code = getRouterParam(event, 'code') as String;
 
+  // Check if code is provided
+  if (code == undefined) return { error: "No code provided" };
+
+  // check if code is valid
+  if (code == '') return { error: "Empty Code" };
+  if (code.length != 8) return { error: "Empty Code" };
 
   // Fetch treasure by Code
   const treasure = await findTreasureByCode(code);
