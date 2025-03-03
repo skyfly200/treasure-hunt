@@ -10,10 +10,14 @@ export default defineEventHandler(async (event) => {
         code: shortCode,
         lat: 40.0150,
         lng: -105.2705,
-        hidden_at: Date.now(),
+        created_at: Date.now(),
+        hidden_at: null,
         found_at: null,
         finder_id: null,
     };
+
+    // Save the treasure to the database
+
 
     // Generate a small QR Code containing only the short code
     const qrCode = await QRCode.toDataURL(shortCode, { errorCorrectionLevel: "H", version: 3 });
