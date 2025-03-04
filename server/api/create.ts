@@ -7,11 +7,19 @@ export default defineEventHandler(async (event) => {
     // Generate a short random alphanumeric code (8 characters)
     const shortCode = randomBytes(6).toString("base64url").slice(0, 8); // 8-char safe URL string
 
+    const query = getQuery(event);
+    const title = query.title as String;
+    const description = query.description as String;
+    const lat = query.lat as number;
+    const lng = query.lng as number;
+
     // Store the treasure with the short code
     const treasure: Treasure = {
         code: shortCode,
-        lat: 40.0150,
-        lng: -105.2705,
+        title: title,
+        description: description,
+        lat: lat,
+        lng: lng,
         created_at: Date.now(),
         hidden_at: null,
         found_at: null,
