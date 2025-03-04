@@ -1,7 +1,8 @@
 import { saveTreasure, findTreasureByCode } from '~/server/utils/treasure';
 
 export default defineEventHandler(async (event) => {
-  const { code, userId } = await readBody(event);
+  const query = getQuery(event);
+  const code = query.code as String;
 
   // Fetch treasure by Code
   const treasure = await findTreasureByCode(code);
