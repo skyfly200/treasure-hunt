@@ -2,6 +2,7 @@ import { saveTreasure, findTreasureByCode } from '~/server/utils/treasure';
 
 export default defineEventHandler(async (event) => {
   const code = getRouterParam(event, 'code') as String;
+  const { userId } = await readBody(event);
 
   // Check if code is provided
   if (code == undefined) return { error: "No code provided" };
