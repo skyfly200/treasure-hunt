@@ -1,3 +1,5 @@
+import { saveTreasure, findTreasureByCode } from '~/server/utils/treasure';
+
 // define treasure type
 type Treasure = {
   code: string;
@@ -8,12 +10,6 @@ type Treasure = {
   found_at: number | null;
   finder_id: string | null;
 };
-
-function findTreasureByCode(code: String) {
-  // Find the treasure in the database
-  const treasure = {} as Treasure;
-  return treasure;
-}
 
 export default defineEventHandler(async (event) => {
   const { code, userId } = await readBody(event);
