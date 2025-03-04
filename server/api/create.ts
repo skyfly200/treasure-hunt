@@ -1,17 +1,7 @@
 import { randomBytes } from "crypto";
 import QRCode from "qrcode";
 import { saveTreasure, findTreasureByCode } from '~/server/utils/treasure';
-
-// define treasure type
-type Treasure = {
-    code: string;
-    lat: number;
-    lng: number;
-    created_at: number;
-    hidden_at: number | null;
-    found_at: number | null;
-    finder_id: string | null;
-};
+import { Treasure } from '~/server/types';
 
 export default defineEventHandler(async (event) => {
     // Generate a short random alphanumeric code (8 characters)

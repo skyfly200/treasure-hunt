@@ -1,16 +1,5 @@
 import { saveTreasure, findTreasureByCode } from '~/server/utils/treasure';
 
-// define treasure type
-type Treasure = {
-  code: string;
-  lat: number;
-  lng: number;
-  created_at: number;
-  hidden_at: number | null;
-  found_at: number | null;
-  finder_id: string | null;
-};
-
 export default defineEventHandler(async (event) => {
   const code = getRouterParam(event, 'code') as String;
 
