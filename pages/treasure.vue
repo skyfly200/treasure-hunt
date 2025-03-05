@@ -1,5 +1,5 @@
 <script setup>
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { useRoute } from "#app";
 import { findTreasureByCode } from '~/server/utils/treasure';
@@ -19,6 +19,9 @@ if (treasure) {
         treasure.found_in = 0;
     }
 }
+
+const formatedTime = dayjs.utc(treasure.found_in * 1000).format("HH:mm:ss.SSS");
+
 </script>
 
 <template>
@@ -30,7 +33,7 @@ if (treasure) {
                 <p><strong>Hidden At:</strong> {{ new Date(treasure.hidden_at * 1000).toLocaleString() }}</p>
                 <p><strong>Found At:</strong> {{ treasure.found_at ? new Date(treasure.found_at * 1000).toLocaleString() : 'Not Found' }}</p>
                 <p><strong>Finder:</strong> {{ treasure.finder?.username || 'Unclaimed' }}</p>
-                <p><strong>Found Time:</strong> {{ dayjs.utc(treasure.found_in * 1000).format("HH:mm:ss.SSS") }}</p>
+                <p><strong>Found Time:</strong> {{ formatedTime }}</p>
             </v-card-text>
         </v-card>
         <v-card v-else>
