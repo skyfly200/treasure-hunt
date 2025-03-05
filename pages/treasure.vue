@@ -1,17 +1,19 @@
 <script setup>
-import { useFetch, useRoute } from "#app";
+import { useRoute } from "#app";
+import { findTreasureByCode } from '~/server/utils/treasure';
 
 const route = useRoute();
 const code = route.query.code;
 
-const { data: treasure } = await useFetch(`/api/treasure/${code}`);
+const treasure = findTreasureByCode(code);
+console.log(code, treasure);
 
 // calculate found_in from hidden_at and found_at
-if (treasure.value) {
-    if (treasure.value.found_at && treasure.value.hidden_at) {
-        treasure.value.found_in = treasure.value.found_at - treasure.value.hidden_at;
+if (treasure) {
+    if (treasure.found_at && treasure.hidden_at) {
+        treasure.found_in = treasure.found_at - treasure.hidden_at;
     } else {
-        treasure.value.found_in = 0;
+        treasure.found_in = 0;
     }
 }
 </script>
