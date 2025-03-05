@@ -3,6 +3,8 @@ import { useFetch } from "#app";
 
 const { data } = await useFetch("/api/markers");
 
+console.log(data);
+
 // calculate found_in from hidden_at and found_at
 data = data.map((item) => {
   if (item.found_at) {
