@@ -16,11 +16,8 @@ export const saveTreasure = (treasure: Treasure) => {
     
 export const findTreasureByCode = (code: String) => {
     // Find the treasure in the database
-    const treasure = {} as Treasure;
-    treasures.forEach((t) => {
-        if (t.code == code) return t;
-    });
-    return {};
+    const treasure = treasures.find((t) => t.code === code) as Treasure;
+    return treasure ? treasure : null;
 }
 
 export const getTreasures = () => {
