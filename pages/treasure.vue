@@ -1,7 +1,10 @@
 <script setup>
-import * as dayjs from 'dayjs'
+import * as dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { useRoute } from "#app";
 import { findTreasureByCode } from '~/server/utils/treasure';
+
+dayjs.extend(utc); // Enable UTC plugin for dayjs
 
 const route = useRoute();
 const code = route.query.code;
