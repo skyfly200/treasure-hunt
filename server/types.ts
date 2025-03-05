@@ -8,5 +8,5 @@ export type Treasure = {
     created_at: number;
     hidden_at: number | null;
     found_at: number | null;
-    finder_id: string | null;
+    finder: Object | null;
 };
