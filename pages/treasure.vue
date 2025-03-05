@@ -6,7 +6,6 @@ const route = useRoute();
 const code = route.query.code;
 
 const treasure = findTreasureByCode(code);
-console.log(code, treasure);
 
 // calculate found_in from hidden_at and found_at
 if (treasure) {
