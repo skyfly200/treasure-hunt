@@ -1,4 +1,5 @@
 <script setup>
+import * as dayjs from 'dayjs'
 import { useRoute } from "#app";
 import { findTreasureByCode } from '~/server/utils/treasure';
 
@@ -23,10 +24,10 @@ if (treasure) {
             <v-card-title class="text-h5">{{ treasure.title }}</v-card-title>
             <v-card-text>
                 <p><strong>Description:</strong> {{ treasure.description }}</p>
-                <p><strong>Hidden:</strong> {{ new Date(treasure.hidden_at * 1000).toLocaleString() }}</p>
-                <p><strong>Found:</strong> {{ treasure.found_at ? new Date(treasure.found_at * 1000).toLocaleString() : 'Not Found' }}</p>
+                <p><strong>Hidden At:</strong> {{ new Date(treasure.hidden_at * 1000).toLocaleString() }}</p>
+                <p><strong>Found At:</strong> {{ treasure.found_at ? new Date(treasure.found_at * 1000).toLocaleString() : 'Not Found' }}</p>
                 <p><strong>Finder:</strong> {{ treasure.finder?.username || 'Unclaimed' }}</p>
-                <p><strong>Found In:</strong> {{ treasure.found_in }} seconds</p>
+                <p><strong>Found Time:</strong> {{ dayjs.utc(treasure.found_in * 1000).format("HH:mm:ss.SSS") }}</p>
             </v-card-text>
         </v-card>
         <v-card v-else>
