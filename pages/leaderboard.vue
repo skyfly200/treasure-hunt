@@ -1,32 +1,34 @@
 <script setup>
 import { useFetch } from "#app";
 
-const { data } = await useFetch("/api/markers");
+var { data } = await useFetch("/api/markers");
 
-console.log(data);
+if (data.value) {
+  data = data.value;
 
-// calculate found_in from hidden_at and found_at
-data = data.map((item) => {
-  if (item.found_at) {
-    item.found_in = item.found_at - item.hidden_at;
-  } else {
-    item.found_in = 0;
-  }
-  return item;
-});
+  // calculate found_in from hidden_at and found_at
+  data = data.map((item) => {
+    if (item.found_at) {
+      item.found_in = item.found_at - item.hidden_at;
+    } else {
+      item.found_in = 0;
+    }
+    return item;
+  });
 
-// sort by found_in
-data.sort((a, b) => {
-  if (a.found_in && b.found_in) {
-    return a.found_in - b.found_in;
-  } else if (a.found_in) {
-    return -1;
-  } else if (b.found_in) {
-    return 1;
-  } else {
-    return 0;
-  }
-});
+  // sort by found_in
+  data.sort((a, b) => {
+    if (a.found_in && b.found_in) {
+      return a.found_in - b.found_in;
+    } else if (a.found_in) {
+      return -1;
+    } else if (b.found_in) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+}
 
 </script>
 
