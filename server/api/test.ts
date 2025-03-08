@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Check if treasure has already been claimed
-  if (treasure.found_at || treasure.finder_id) {
+  if (treasure.found_at || treasure.finder) {
     return { error: "Treasure already claimed." };
   }
 
