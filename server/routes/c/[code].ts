@@ -1,4 +1,5 @@
 import { saveTreasure, findTreasureByCode } from '~/server/utils/treasure';
+import { User } from '~/server/types';
 
 export default defineEventHandler(async (event) => {
   const code = getRouterParam(event, 'code') as String;
@@ -20,13 +21,13 @@ export default defineEventHandler(async (event) => {
   }
 
   // Check if treasure has already been claimed
-  if (treasure.found_at || treasure.finder_id) {
+  if (treasure.found_at || treasure.finder) {
     return { error: "Treasure already claimed." };
   }
 
   // Mark treasure as claimed
   treasure.found_at = Date.now();
-  treasure.finder_id = userId;
+  treasure.finder = { "userId": userId, "username": "test" } as User;
   await saveTreasure(treasure);
 
   return { message: "Treasure claimed!", treasure };

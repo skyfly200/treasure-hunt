@@ -8,8 +8,8 @@ export default defineEventHandler(async (event) => {
     const shortCode = randomBytes(6).toString("base64url").slice(0, 8); // 8-char safe URL string
 
     const query = getQuery(event);
-    const title = query.title as String;
-    const description = query.description as String;
+    const title = query.title as string;
+    const description = query.description as string;
     const lat = query.lat as number;
     const lng = query.lng as number;
 
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
         created_at: Date.now(),
         hidden_at: null,
         found_at: null,
-        finder_id: null,
+        finder: null,
     };
 
     // Save the treasure to the database
