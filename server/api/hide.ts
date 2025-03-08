@@ -17,6 +17,11 @@ export default defineEventHandler(async (event) => {
     return { error: "Treasure already claimed." };
   }
 
+  // set img field if provided
+  if (query.img) {
+    treasure.img = query.img as string;
+  }
+
   // Mark treasure as hidden and start the timer
   treasure.hidden_at = Date.now();
   await saveTreasure(treasure);

@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {
         code: shortCode,
         title: title,
         description: description,
+        img: null,
         lat: lat,
         lng: lng,
         created_at: Date.now(),

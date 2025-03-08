@@ -9,6 +9,7 @@ export type Treasure = {
     code: string;
     title: string;
     description: string;
+    img: string | null;
     lat: number;
     lng: number;
     created_at: number;

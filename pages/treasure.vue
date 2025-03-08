@@ -35,7 +35,8 @@ const formatedTime = dayjs.utc(treasure.found_in * 1000).format("HH:mm:ss.SSS");
                 <p><strong>Finder:</strong> {{ treasure.finder?.username || 'Unclaimed' }}</p>
                 <p><strong>Found Time:</strong> {{ formatedTime }}</p>
             </v-card-text>
-            <v-img src= "https://unsplash.it/600/400" />
+            <v-img :src="treasure.img" />
+            <--! Add a video player here -->
         </v-card>
         <v-card v-else>
             <v-card-title class="text-h5">Treasure not found</v-card-title>
