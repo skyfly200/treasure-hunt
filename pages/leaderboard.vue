@@ -46,7 +46,8 @@ if (data.value) {
             { title: 'Hidden (Time)', value: 'hidden_at' },
             { title: 'Found (Time)', value: 'found_at' },
             { title: 'Found In', value: 'found_in' },
-            { title: 'Finder', value: 'finder.username' }
+            { title: 'Finder', value: 'finder.username' },
+            { title: 'Code', value: 'code' }
           ]"
           item-value="code"
         >
@@ -68,6 +69,10 @@ if (data.value) {
 
           <template v-slot:item.finder.username="{ item }">
             {{ item.finder?.username || 'Unclaimed' }}
+          </template>
+
+          <template v-slot:item.code="{ value }">
+            <a :href="'/treasure/?code='+value">{{ value }}</a>
           </template>
         </v-data-table>
       </v-card-text>
