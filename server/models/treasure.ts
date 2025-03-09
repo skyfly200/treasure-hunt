@@ -13,4 +13,4 @@ const TreasureSchema = new mongoose.Schema({
     lng: Number,
 });
 
-export default mongoose.models.Treasure || mongoose.model('Treasure', TreasureSchema);
+export default mongoose.models.TreasureSchema || mongoose.model('TreasureSchema', TreasureSchema);
