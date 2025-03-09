@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   modules: [
     'vuetify-nuxt-module'
   ],
+  runtimeConfig: {
+    MONGODB_URI: process.env.MONGODB_URI,
+  },
+  nitro: {
+    preset: "netlify", // Ensures Nuxt API works on Netlify
+  },
   css: ["leaflet/dist/leaflet.css"],
   vuetify: {
     moduleOptions: {
