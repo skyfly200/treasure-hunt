@@ -1,6 +1,6 @@
 import { Treasure } from '~/server/types';
 import { connectDB } from '~/server/utils/db';
-import TreasureSchema from '~/server/models/Treasure';
+import TreasureSchema from '~/server/models/treasure';
 
 const treasures: Treasure[] = [
     { code: "abcd1234", lat: 40.0150, lng: -105.2705, title: "Boulder", description: "A beautiful city at the foothills of the Rocky Mountains.", hidden_at: 1633035600, found_at: 1633059200, created_at: 1633035600, finder: { userId: 1, username: "User1" }, img: "https://unsplash.it/600/400?random" },
