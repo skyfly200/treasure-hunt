@@ -4,6 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     baseURL: '/', // Ensures correct asset paths
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
   },
   modules: [
     'vuetify-nuxt-module'
