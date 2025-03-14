@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "postbuild": "cp -r public/. .output/public/"
+    "postbuild": "mkdir -p .output/public && cp -r public/. .output/public/"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
