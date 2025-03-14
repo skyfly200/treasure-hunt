@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "postbuild": "mkdir -p .output/public && cp -r public/. .output/public/ && cp -r node_modules/leaflet/dist/images/. .output/public/"
+    "postbuild": "mkdir -p .output/public && cp -r public/. .output/public/ && cp -r node_modules/leaflet/dist/images/. .dist/"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
